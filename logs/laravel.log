@@ -1,0 +1,87 @@
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+  Press Ctrl+C to stop the server
+
+  2025-11-04 15:16:54 /api/register ................................ ~ 0.35ms
+  2025-11-04 15:16:54 /api/register ................................ ~ 0.10ms
+  2025-11-04 15:17:12 /api/register ................................ ~ 0.49ms
+  2025-11-04 15:17:12 /api/register ................................ ~ 0.12ms
+  PHP Fatal error:  Uncaught ReflectionException: Class "view" does not exist in /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php:1161
+  Stack trace:
+  #0 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(1161): ReflectionClass->__construct('view')
+  #1 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(972): Illuminate\Container\Container->build('view')
+  #2 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve('view', Array, true)
+  #3 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(903): Illuminate\Foundation\Application->resolve('view', Array)
+  #4 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make('view', Array)
+  #5 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(1856): Illuminate\Foundation\Application->make('view')
+  #6 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php(177): Illuminate\Container\Container->offsetGet('Illuminate\\Cont...')
+  #7 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(1154): Illuminate\Routing\RoutingServiceProvider->{closure:Illuminate\Routing\RoutingServiceProvider::registerResponseFactory():176}(Object(Illuminate\Foundation\Application), Array)
+  #8 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(972): Illuminate\Container\Container->build(Object(Closure))
+  #9 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+  #10 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(903): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+  #11 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+  #12 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(138): Illuminate\Foundation\Application->make('Illuminate\\Cont...', Array)
+  #13 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(851): app('Illuminate\\Cont...')
+  #14 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(987): response('<!-- array_merg...', 500, Array)
+  #15 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(839): Illuminate\Foundation\Exceptions\Handler->toIlluminateResponse(Object(Symfony\Component\HttpFoundation\Response), Object(TypeError))
+  #16 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(738): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(TypeError))
+  #17 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(626): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(TypeError))
+  #18 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(574): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(TypeError))
+  #19 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(148): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(TypeError))
+  #20 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+  #21 /Users/medrobotsmac/Documents/Chat/backend/public/index.php(20): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+  #22 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/medrobot...')
+  #23 {main}
+  Next Illuminate\Contracts\Container\BindingResolutionException: Target class [view] does not exist. in /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php:1163
+  Stack trace:
+  #0 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(972): Illuminate\Container\Container->build('view')
+  #1 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve('view', Array, true)
+  #2 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(903): Illuminate\Foundation\Application->resolve('view', Array)
+  #3 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make('view', Array)
+  #4 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(1856): Illuminate\Foundation\Application->make('view')
+  #5 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php(177): Illuminate\Container\Container->offsetGet('Illuminate\\Cont...')
+  #6 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(1154): Illuminate\Routing\RoutingServiceProvider->{closure:Illuminate\Routing\RoutingServiceProvider::registerResponseFactory():176}(Object(Illuminate\Foundation\Application), Array)
+  #7 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(972): Illuminate\Container\Container->build(Object(Closure))
+  #8 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+  #9 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php(903): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+  #10 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+  #11 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(138): Illuminate\Foundation\Application->make('Illuminate\\Cont...', Array)
+  #12 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(851): app('Illuminate\\Cont...')
+  #13 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(987): response('<!-- array_merg...', 500, Array)
+  #14 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(839): Illuminate\Foundation\Exceptions\Handler->toIlluminateResponse(Object(Symfony\Component\HttpFoundation\Response), Object(TypeError))
+  #15 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(738): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(TypeError))
+  #16 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(626): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(TypeError))
+  #17 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(574): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(TypeError))
+  #18 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(148): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(TypeError))
+  #19 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+  #20 /Users/medrobotsmac/Documents/Chat/backend/public/index.php(20): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+  #21 /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/medrobot...')
+  #22 {main}
+  thrown in /Users/medrobotsmac/Documents/Chat/backend/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 1163
+  2025-11-04 15:17:56 /api/register ................................ ~ 2.86ms
+  2025-11-04 15:18:05 /api/login ................................... ~ 0.49ms
+  2025-11-04 15:18:05 /api/login ................................... ~ 0.10ms
+  2025-11-04 15:18:11 /api/login ................................... ~ 0.23ms
+  2025-11-04 15:18:11 /api/login ................................... ~ 0.09ms
+  2025-11-04 15:18:22 /sanctum/csrf-cookie ......................... ~ 0.43ms
+  2025-11-04 15:18:22 /api/login ................................... ~ 0.10ms
+  2025-11-04 15:18:22 /api/login ................................... ~ 0.10ms
+
+   INFO  Environment modified. Restarting server...  
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+  Press Ctrl+C to stop the server
+
+  2025-11-04 15:19:24 /sanctum/csrf-cookie ......................... ~ 0.13ms
+  2025-11-04 15:19:24 /api/login ................................... ~ 0.04ms
+  2025-11-04 15:19:24 /api/login ................................... ~ 0.04ms
+  2025-11-04 15:19:36 /sanctum/csrf-cookie ......................... ~ 0.35ms
+  2025-11-04 15:19:36 /api/login ................................... ~ 0.10ms
+  2025-11-04 15:19:36 /api/login ................................... ~ 0.11ms
+  2025-11-04 15:19:49 /sanctum/csrf-cookie ......................... ~ 0.38ms
+  2025-11-04 15:19:49 /api/register ................................ ~ 0.12ms
+  2025-11-04 15:19:49 /api/register ................................ ~ 0.09ms
+  2025-11-04 15:20:12 /api/register ................................ ~ 0.29ms
+  2025-11-04 15:20:12 /api/register ................................ ~ 0.12ms
