@@ -12,12 +12,14 @@ export const createEcho = (token) => {
 
   echoInstance = new Echo({
     broadcaster: 'reverb',
-    key: '0nv0lrrknhotvqsqqsox',
-    wsHost: 'localhost',
-    wsPort: 8080,
-    wssPort: 8080,
+    key: import.meta.env.VITE_REVERB_APP_KEY || '0nv0lrrknhotvqsqqsox',
+    wsHost: import.meta.env.VITE_REVERB_HOST || 'localhost',
+    wsPort: import.meta.env.VITE_REVERB_PORT || 8090,
+    wssPort: import.meta.env.VITE_REVERB_PORT || 8090,
     forceTLS: false,
     enabledTransports: ['ws', 'wss'],
+    disableStats: true,
+    encrypted: false,
     authEndpoint: 'http://localhost:8000/broadcasting/auth',
     auth: {
       headers: {
@@ -25,33 +27,19 @@ export const createEcho = (token) => {
         Accept: 'application/json',
       },
     },
-    authorizer: (channel) => {
-      return {
-        authorize: (socketId, callback) => {
-          fetch('http://localhost:8000/broadcasting/auth', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-              socket_id: socketId,
-              channel_name: channel.name,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              callback(null, data);
-            })
-            .catch((error) => {
-              console.error('Authorization error:', error);
-              callback(error);
-            });
-        },
-      };
-    },
+  });
+
+  // Log de conexão
+  echoInstance.connector.pusher.connection.bind('connected', () => {
+    console.log('✅ WebSocket connected successfully');
+  });
+
+  echoInstance.connector.pusher.connection.bind('disconnected', () => {
+    console.log('❌ WebSocket disconnected');
+  });
+
+  echoInstance.connector.pusher.connection.bind('error', (err) => {
+    console.error('WebSocket error:', err);
   });
 
   console.log('Echo instance created with token');

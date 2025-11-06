@@ -55,20 +55,54 @@ const ChatRoom = ({ group, onGroupUpdated }) => {
   const setupWebSocket = () => {
     const echo = getEcho();
     if (!echo) {
-      console.error('Echo instance not available');
+      console.error('❌ Echo instance not available');
       return;
     }
 
-    console.log(`Joining private channel: group.${group.id}`);
+    console.log(`🔌 Joining private channel: group.${group.id}`);
+
+    // Limpar canal anterior se existir
+    if (channelRef.current) {
+      console.log('🧹 Cleaning up previous channel subscription');
+      channelRef.current.unsubscribe();
+    }
 
     const channel = echo.private(`group.${group.id}`)
       .listen('MessageSent', (e) => {
-        console.log('MessageSent event received:', e);
-        setMessages(prev => [...prev, e]);
+        console.log('📨 MessageSent event received:', e);
+        // O evento contém os dados diretamente (não dentro de e.message)
+        const newMessage = {
+          id: e.id,
+          content: e.content,
+          user: e.user,
+          group_id: e.group_id,
+          created_at: e.created_at
+        };
+
+        console.log('➕ Adding message via WebSocket:', newMessage);
+
+        // Adicionar mensagem apenas se ainda não existir (evitar duplicatas)
+        setMessages(prev => {
+          const exists = prev.some(msg => msg.id === newMessage.id);
+          if (exists) {
+            console.log('⚠️ Message already exists, skipping:', newMessage.id);
+            return prev;
+          }
+          console.log('✅ Message added successfully');
+          return [...prev, newMessage];
+        });
+      })
+      .listenForWhisper('typing', (e) => {
+        console.log('⌨️ User typing:', e);
       })
       .error((error) => {
-        console.error('Channel error:', error);
+        console.error('❌ Channel error:', error);
       });
+
+    // Log de subscrição
+    channel.subscribed(() => {
+      console.log(`✅ Successfully subscribed to group.${group.id}`);
+    });
 
     channelRef.current = channel;
 
@@ -96,7 +130,14 @@ const ChatRoom = ({ group, onGroupUpdated }) => {
         content: newMessage,
       });
 
-      setMessages(prev => [...prev, response.data]);
+      // Adicionar a mensagem imediatamente para feedback instantâneo
+      setMessages(prev => {
+        // Verificar se já existe para evitar duplicatas
+        const exists = prev.some(msg => msg.id === response.data.id);
+        if (exists) return prev;
+        return [...prev, response.data];
+      });
+
       setNewMessage('');
     } catch (error) {
       console.error('Error sending message:', error);
